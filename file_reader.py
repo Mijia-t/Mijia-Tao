@@ -64,7 +64,10 @@ def read_bff_file(file_path):
     return updated_grid, updated_blocks, lasers, points
 
 if __name__ == '__main__':
-    file_path = ''
+    file_path = '/bff_files/mad_1.bff'
+    grid, block_available, lasers, points = read__bff_file(file_path)
+    
+
 
 
 
