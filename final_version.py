@@ -483,5 +483,50 @@ if __name__ == "__main__":
         times.append(t1 - t0)
         print(f"File: {name}, Time: {t1 - t0} seconds")
                 
+# Other Test
+if __name__ == '__main__':
+    file_path = '/Users/mijia/Desktop/bff_files/mad_1.bff'
+    grid, block_available, lasers, points = read_bff_file(file_path)
+    print(f"Successfully read {file_path}")
+    
+    # Test Block Initialization
+    block = Block('reflect', (1, 1))
+    if block.block_type == 'reflect' and block.position == (1, 1):
+        print("Initialization test passed.")
+
+    # Test Reflect Block Interaction
+    laser = type('Laser', (object,), {'direction': (1, 1)})
+    reflected_direction = block.interact_with_laser(laser)
+    if reflected_direction == (-1, -1):
+        print("Reflect interaction test passed.")
+
+    # Test Opaque Block Interaction
+    opaque_block = Block('opaque', (2, 2))
+    laser_stopped = opaque_block.interact_with_laser(laser)
+    if laser_stopped is None:
+        print("Opaque interaction test passed.")
+
+    # Test Refract Block Interaction
+    refract_block = Block('refract', (3, 3))
+    refracted_direction = refract_block.interact_with_laser(laser)
+    if refracted_direction == [laser.direction]:
+        print("Refract interaction test passed.")
+
+    # Define file paths
+    file_path = '/Users/mijia/Desktop/bff_files/mad_1.bff'
+    output_image_path = '/Users/mijia/Desktop/bff_files/mad_1_image'
+
+    # Read the .bff file
+    grid, blocks, lasers, points = read_bff_file(file_path)
+
+    # Convert grid to the format expected by GridImage
+    grid_for_image = [' '.join(row) for row in grid]
+
+    # Create the image
+    grid_image = GridImage(grid_for_image, lasers, points, output_image_path)
+    grid_image.build_image()
+
+if os.path.exists(output_image_path + '.png'):
+    print("Image creation successful.")
 
                 
