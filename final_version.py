@@ -1,7 +1,8 @@
-import copy
 import os
-import numpy as np
 import time
+import copy
+import numpy as np
+from PIL import Image
 
 def read_bff_file(file_path):
     '''
@@ -98,8 +99,10 @@ class Block:
         '''
         self.block_type = block_type
         self.position = position
-      
-      def interact_with_laser(self, laser):
+        
+        
+    def interact_with_laser(self, laser):
+            
         '''
         Defines how the block interacts with a laser.
         
@@ -120,6 +123,7 @@ class Block:
             None if the laser stops at an opaque block.
 
         '''
+        
         if self.block_type == 'reflect':
             return self.reflect_laser(laser.direction)
         
@@ -169,7 +173,7 @@ class Block:
         '''
         return [direction]
         
-        def __str__(self):
+    def __str__(self):
         '''
         Get the block's type and position information.
 
@@ -207,7 +211,7 @@ class GridImage:
         self.points = points
         self.file_path = file_path
 
-        def build_image(self):
+    def build_image(self):
         '''
         Creates and saves an image of the grid, lasers, and points.
 
@@ -471,11 +475,13 @@ if __name__ == "__main__":
         # Read data and get the solution
         grid, blockAvailable, lasers, targets = read_bff_file(file_path)
         sol = Solution(grid, blockAvailable, lasers, targets, file_path)
-        sol.permutation()
+        sol.solve()
         
         # End timer
         t1 = time.time()
         
         times.append(t1 - t0)
         print(f"File: {name}, Time: {t1 - t0} seconds")
+                
+
                 
