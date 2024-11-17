@@ -86,3 +86,42 @@ class Block:
 
         '''
         return [direction]
+        
+        def __str__(self):
+        '''
+        Get the block's type and position information.
+
+        Returns
+        -------
+        str
+            A string contains info about block's type and position.
+
+        '''
+        return f"Block(type={self.block_type}, position={self.position})"
+
+
+
+# Test
+if __name__ == "__main__":
+    # Test Block Initialization
+    block = Block('reflect', (1, 1))
+    if block.block_type == 'reflect' and block.position == (1, 1):
+        print("Initialization test passed.")
+
+    # Test Reflect Block Interaction
+    laser = type('Laser', (object,), {'direction': (1, 1)})
+    reflected_direction = block.interact_with_laser(laser)
+    if reflected_direction == (-1, -1):
+        print("Reflect interaction test passed.")
+
+    # Test Opaque Block Interaction
+    opaque_block = Block('opaque', (2, 2))
+    laser_stopped = opaque_block.interact_with_laser(laser)
+    if laser_stopped is None:
+        print("Opaque interaction test passed.")
+
+    # Test Refract Block Interaction
+    refract_block = Block('refract', (3, 3))
+    refracted_direction = refract_block.interact_with_laser(laser)
+    if refracted_direction == [laser.direction]:
+        print("Refract interaction test passed.")
