@@ -459,7 +459,7 @@ class Solution:
                         file.write(f"{self.ans[i][j]} ")
                     file.write("\n")
                     
-base_dir = '/Users/mijia/Desktop/bff_files'
+base_dir = os.path.abspath('bff_files')
 file_names = ["yarn_5.bff", "tiny_5.bff", "numbered_6.bff", "mad_1.bff", "mad_7.bff", "mad_4.bff", "dark_1.bff"]
 
 if __name__ == "__main__":
@@ -485,7 +485,7 @@ if __name__ == "__main__":
                 
 # Other Test
 if __name__ == '__main__':
-    file_path = '/Users/mijia/Desktop/bff_files/mad_1.bff'
+    file_path =  os.path.join(base_dir, "mad_1.bff")
     grid, block_available, lasers, points = read_bff_file(file_path)
     print(f"Successfully read {file_path}")
     
@@ -513,8 +513,7 @@ if __name__ == '__main__':
         print("Refract interaction test passed.")
 
     # Define file paths
-    file_path = '/Users/mijia/Desktop/bff_files/mad_1.bff'
-    output_image_path = '/Users/mijia/Desktop/bff_files/mad_1_image'
+    output_image_path = os.path.join(base_dir, "mad_1_image")
 
     # Read the .bff file
     grid, blocks, lasers, points = read_bff_file(file_path)
