@@ -20,13 +20,12 @@ The project includes a script that automatically finds a solution to place block
 4. Targets: 'P': points to hit.
 
 # Progress
-1. Reads the .bff file to extract:
-   Grid layout, laser positions/directions, target points, and available block counts.
-2. Implements a backtracking algorithm to place blocks efficiently.
-3. Strategically prioritizes placements to hit all targets.
+1. Reads the .bff file to extract puzzle details.
+2. Implements a backtracking algorithm to explore all possible block placements.
+3. Uses laser path simulation to validate block placements.
 4. Stops once all targets are hit and blocks are used, recording the solution.
-5. Saves block placements in a .txt file.
-6. Logs the solving time for each puzzle in the terminal.   
+5. Saves the solution in a .txt file.
+6. Logs solving time in the terminal.  
 
 
 
